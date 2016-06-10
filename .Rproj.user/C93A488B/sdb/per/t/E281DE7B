@@ -1,0 +1,17 @@
+{
+    "contents" : "# this fuction will estimate the kernel density estimator\n#set.seed(1) #just to test for myself\n#y <- rgamma(10000, 1) # -\"-\n#' @export\n#' @author Christian Blikdal Hansen\n#' @title KDE (Kernel Density Estimator)\n#' @keywords Density Kernel_Density Estimator Sturges_Naive Kernel_Gaussian\n#' @return \"Quantiles and mean\" or \"density at d\"\n#' @example KDE(x, method=\"gaussian\")\n#' @param x <- data set\n#' @param d <- point of estimation\n#' @param h <- bandwith\n#' @param method <- \"naive\" or \"gaussian\n\nKDE <- function(x, d=0, h=0, method=\"naive\"){\n  vector <- c()\n  if(d==0){ # if d not specified, the function will return quantiles:\n    Q = as.numeric(quantile(x)) #using the quantile() to find max, min, 1st quantile, 3th quantile and median\n    Q = append(Q, mean(x)) # appending the mean\n    Q = sapply(Q, function(q) KDE(x, q, h, method)) #applying the function\n    Quantiles <- matrix(c(Q[1], Q[2], Q[3], Q[4], Q[5], Q[6]), nrow=1, byrow=TRUE)\n    rownames(Quantiles) <- c(\"probalility\") #naming\n    colnames(Quantiles) <- c(\"min\", \"first quantile\", \"median\", \"third qunatile\", \"max\", \"mean\") #naming\n    return(Quantiles)\n  }\n  #for naive method\n  if(method == \"naive\"){\n    if(h==0){ # if the bandwith is not specified\n      h <- (max(x)-min(x))/(1+log2(length(x))) #h from sturges formula\n    }\n    for(i in 1:length(x)){ #creating a vector\n      if(abs((d-x[i])/h)<1){\n        vector <- append(vector, 0.5)\n      }\n    }\n    return((1/(length(x)*h))*sum(vector))\n  }\n  #for gaussian method\n  else if(method == \"gaussian\"){\n    if(h==0){\n      h <- 0.9*sd(x)*length(x)^(-1/5)\n    }\n    for(i in 1:length(x)){\n      vector <- append(vector,(1/sqrt(2*pi))*exp(-((d-x[i])/h)^2/2))\n    }\n    return(1/(length(x)*h)*sum(vector))\n\n  }\n  else{\n    return(\"unknown method\")\n  }\n}\n\n\n",
+    "created" : 1465552354543.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1953832261",
+    "id" : "E281DE7B",
+    "lastKnownWriteTime" : 1465549811,
+    "path" : "~/Helllo/R/KDE.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

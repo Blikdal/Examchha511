@@ -1,0 +1,17 @@
+{
+    "contents" : "#' @export\n#' @author Christian Blikdal Hansen\n#' @title chisquared\n#' @keywords Chi_Squared\n#' @return estimated p-value\n#' @example chisquared(25, 18, 2000)\n#' @param x <- data\n#' @param df <- degrees of freedom\n#' @param n amount of data generated randomly from chisquare distribution\n\ndata <- read.csv(\"https://raw.githubusercontent.com/haghish/ST516/master/data/gum.txt\", sep=\" \")\ndata$Number\nchisquared <- function(x, df, n){\n  p <- ecdf(rchisq(n, df)) #creates n random numbers from the chi-squared distribution, and takes the empirical cdf\n  return(1-p(x))\n}\nchisquared(25, 18, 2000)\n",
+    "created" : 1465551779936.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3168742370",
+    "id" : "17436BE2",
+    "lastKnownWriteTime" : 1465552713,
+    "path" : "~/Helllo/R/chisquared.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

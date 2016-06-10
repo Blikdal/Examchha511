@@ -1,0 +1,17 @@
+{
+    "contents" : "#' @export\n#' @author Christian Blikdal Hansen\n#' @title correalationboot\n#' @keywords Bootstrap Correalation Standard_Error bias Confidence_Interval\n#' @return cor(x,y), bootstrap estimation of correalation, bootstram estimation of standard error, bias, confidence interval\n#' @example (10000, Data$Grades, Data$Sport)\n#' @param n <- number of bootstrap estimates\n#' @param x <- data set\n#' @param y <- data set\n\ncorrealationboot <- function(n, x, y){\n  storage <- c()\n  for (i in 1:n){\n    j <- sample(1:length(x), size = length(x), replace=TRUE)\n    x1 <- x[j]\n    y1 <- y[j]\n    storage[i] <- cor(x1, y1)\n  }\n  print(cor(x,y))\n  print(mean(storage)) #bootstrap estimation for correalation:\n  print(se <- sd(storage))#standarderror\n  #confidense interval of 95%\n  #mean(storage) +- se*qnorm(1-(1-0.95)/2)\n  print(confidenceinterval <- c(mean(storage) - se*1.975, mean(storage) + se*1.975))\n  print(Bias <- mean(storage)-cor(Data$Sport, Data$Grades)) #differense between real and estimated\n}\ncorrealationboot(5000, Data$Grades, Data$Sport)\n\n\n",
+    "created" : 1465551781475.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1026489671",
+    "id" : "AE254EE1",
+    "lastKnownWriteTime" : 1465496239,
+    "path" : "~/Helllo/R/correalationboot.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

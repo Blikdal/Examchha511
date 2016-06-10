@@ -1,0 +1,18 @@
+{
+    "contents" : "#' @export\n#' @author Christian Blikdal Hansen\n#' @title Buffonsexp\n#' @keywords Buffon Pi Estimation needle\n#' @return Estimated pi\n#' @example Buffonsexp(10000, 1, 1)\n#' @param N <- number of needles thrown\n#' @param l <- length of needle\n#' @param d <- distance between lines on the floor\n\nBuffonsexp <- function(N, l, d){\n  Hits <- 0\n  for(i in 1:N){\n    u1 <- runif(1)\n    u2 <- runif(1)\n    phit <- l*sin(u1*pi)+d*u2\n    if(phit>d){\n      Hits <- Hits+1\n    }\n  }\n  2*N/Hits\n}\n",
+    "created" : 1465552058054.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2772923119",
+    "id" : "50CBB638",
+    "lastKnownWriteTime" : 1465552202,
+    "path" : "~/Examchha511/R/Buffonsexp.R",
+    "project_path" : "R/Buffonsexp.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "#' @export\n#' @author Christian Blikdal Hansen\n#' @note has to be used with KDE\n#' @title densityplot\n#' @keywords density_plot\n#' @return densityplot\n#' @example densityplot()\n#' @param x <- data\n#' @param n <- number of points in the plot\n#' @param method <- \"naive\"(default) or \"gaussian\"\n#' @param from <- start point of the plot\n#' @param to <- end point of plot\n\ndensityplot <- function(x, n=500, method=\"naive\", from=\"\", to=\"\"){\n  C <- c()\n  if(from==\"\"){\n    from <- min(x)-sd(x)/3 #this gives the default value of the start point of the plot\n  }\n  if(to==\"\"){\n    to <- max(x)+sd(x)/3 #this gives the default value of the end point of the plot\n  }\n  if(method!=\"naive\" && method!=\"gaussian\"){\n    return(\"not a specified method\") #can not calculate for other methods\n  }\n  for(i in 1:n){\n    d <- ((from-to)*i)/n\n    C <- append(C, KDE(x, d= d, method=method))\n  }\n  plot(C)\n}\n\n",
+    "created" : 1465551782306.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "868403570",
+    "id" : "F3500919",
+    "lastKnownWriteTime" : 1465557738,
+    "path" : "~/Helllo/R/densityplot.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "#' @export\n#' @author Christian Blikdal Hansen\n#' @title chisquaredgoodnesoffit\n#' @keywords Chi_Squared goodness_of_fit\n#' @return\n#' @example chisquaredgoodnesoffit(x, p)\n#' @param x <- vector of data\n#' @param p <- probability for each data. default value p=1/length(x)\ndata <- read.csv(\"https://raw.githubusercontent.com/haghish/ST516/master/data/gum.txt\", sep=\" \")\ndata\nchisquaredgoodnesoffit <- function(x, p = c(rep(1/length(x), length(x)))){ # default value is a vector of length(x) with uniform prob\n  V <- c()\n  H <- sum(x)\n  for(i in 1:length(x)){\n    s <- ((x[i]-p[i]*H)^2)/(p[i]*H) #(observed-theoretical)^2/theoretical\n    V <- append(V, s)\n  }\n  return(sum(V))\n}\n\nchisquaredgoodnesoffit(data$Number, data$expected)\n\n",
+    "created" : 1465551780776.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "476505876",
+    "id" : "D5E73F50",
+    "lastKnownWriteTime" : 1465551457,
+    "path" : "~/Helllo/R/chisquaredgoodnessoffit.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
